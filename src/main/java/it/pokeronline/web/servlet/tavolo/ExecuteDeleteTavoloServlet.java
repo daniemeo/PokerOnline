@@ -18,7 +18,7 @@ import it.pokeronline.service.tavolo.TavoloService;
 /**
  * Servlet implementation class ExecuteDeleteTavoloServlet
  */
-@WebServlet("/ExecuteDeleteTavoloServlet")
+@WebServlet("/tavolo/ExecuteDeleteTavoloServlet")
 public class ExecuteDeleteTavoloServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

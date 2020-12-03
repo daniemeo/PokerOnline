@@ -55,33 +55,33 @@
 			</button>
 		</div>
 		<div class='card'>
-			<div class='card-header'>Risultati ricerca partita</div>
+			<div class='card-header'>Risultati ricerca utenti</div>
 			
 			<div class='table-responsive'>
 				<table class='table table-striped '>
 					<thead>
 						<tr>
-							<th>Denominazione</th>
-							<th>Data Creazione</th>
-							<th>Puntata Minima</th>
-							<th>Creatore</th>
-							<th>Azioni</th>
+							<th>Nome</th>
+							<th>Cognome</th>
+							<th>Username</th>
+							<th>Data Registrazione</th>
+							<th>Stato</th>
 						</tr>
 					</thead>
 					<tbody>
 
-						<c:forEach items="${requestScope.listaTavoli}" var="tavolo">
+						<c:forEach items="${requestScope.listaUser}" var="userRes">
 							<tr>
-								<td><c:out value="${tavolo.denominazione}"></c:out></td>
-								<td><c:out value="${tavolo.dataCreazione}"></c:out></td>
-								<td><c:out value="${tavolo.cifraMin}"></c:out></td>
-								<td><c:out value="${tavolo.user.nome}"></c:out></td>
-								
-								<td><a class="btn  btn-sm btn-outline-secondary" href="${pageContext.request.contextPath}/VisualizzaPartitaServlet?idTavolo=${tavolo.id}"> Visualizza</a> 
-								 
-									 <a class="btn  btn-sm btn-outline-primary ml-2 mr-2" href="${pageContext.request.contextPath}/PrepareGiocaPartitaSerlvlet?idTavolo=${tavolo.id}">Gioca</a>
-								
-								</td>
+								<td><c:out value="${userRes.nome}"></c:out></td>
+								<td><c:out value="${userRes.cognome}"></c:out></td>
+								<td><c:out value="${userRes.username}"></c:out></td>
+								<td><c:out value="${userRes.dataRegistrazione}"></c:out></td>
+								<td><c:out value="${userRes.stato}"></c:out></td>
+								<td><a class="btn  btn-sm btn-outline-secondary" href="${pageContext.request.contextPath}/admin/VisualizzaUtenteServlet?idUser=${userRes.id}"> Visualizza</a> 
+									<a class="btn  btn-sm btn-outline-primary ml-2 mr-2" href="${pageContext.request.contextPath}/admin/PrepareUpdateUtenteServlet?idUser=${userRes.id}">Modifica</a>
+								    <a class="btn  btn-sm btn-outline-primary ml-2 mr-2" href="${pageContext.request.contextPath}/PrepareUpdateTavoloSerlvlet?idTavolo=${tavolo.id}&idUser=${userRes.id}">Disattiva/Attiva</a>
+								     
+								</td> 
 
 
 

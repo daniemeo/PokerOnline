@@ -21,9 +21,13 @@ import it.pokeronline.model.user.User;
 public class CheckAuthFilter implements Filter {
 
 	private static final String HOME_PATH = "";
-	private static final String[] EXCLUDED_URLS = {"/login.jsp","/LoginServlet","/LogoutServlet","/assets/","/PrepareRegistrazioneServlet",
-			"/ExecuteRegistrazioneServlet"};
-	private static final String[] PROTECTED_URLS = {"/users/"};
+	private static final String[] EXCLUDED_URLS = {"/login.jsp","/LoginServlet","/LogoutServlet","/assets/","/PrepareRegistrazioneServlet", 
+			"/ExecuteRegistrazioneServlet","/footer.jsp","/header.jsp","/navbar.jsp"};
+	private static final String[] PROTECTED_URLS = {"/admin/"};
+	private static final String[] PROTECTED_TAVOLO = {"/tavolo/"};
+	// sulla partita non vado a fare nessun controllo speciale, poichè possono accedere tutti!! (sempre se in sessione)!!!
+	
+	
 
 	public CheckAuthFilter() {
 	}
@@ -57,6 +61,12 @@ public class CheckAuthFilter implements Filter {
 				httpRequest.getRequestDispatcher("/home.jsp").forward(httpRequest, httpResponse);
 				return;
 			}
+			
+			if(isPathForOnlyAdministratoreESpecial(pathAttuale) && utenteInSession.isplayer()) {
+				httpRequest.setAttribute("messaggio", "Non si è autorizzati alla navigazione richiesta");
+				httpRequest.getRequestDispatcher("/home.jsp").forward(httpRequest, httpResponse);
+				return;
+			}
 		}
 
 		chain.doFilter(request, response);
@@ -84,6 +94,16 @@ public class CheckAuthFilter implements Filter {
 		}
 		return false;
 	}
+	private boolean isPathForOnlyAdministratoreESpecial(String requestPath) {
+		for (String urlPatternItem : PROTECTED_TAVOLO) {
+			if (requestPath.contains(urlPatternItem)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+
 
 	public void destroy() {
 	}

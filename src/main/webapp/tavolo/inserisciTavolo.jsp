@@ -68,7 +68,7 @@
 		<!-- Main jumbotron for a primary marketing message or call to action -->
 
 		<div class='card-body'>
-			<form action="${pageContext.request.contextPath}/ExecuteInsertTavoloServlet" method="post">
+			<form action="${pageContext.request.contextPath}/tavolo/ExecuteInsertTavoloServlet" method="post">
 			
 				
 					<div class="form-group col-md-6">

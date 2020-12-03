@@ -7,7 +7,7 @@
 <head>
 <jsp:include page="/header.jsp" />
 <meta charset="ISO-8859-1">
-<title>Cerca Libro</title>
+<title>Cerca Utente</title>
 <link href="${pageContext.request.contextPath}/assets/css/global.css"
 	rel="stylesheet">
 </head>
@@ -50,38 +50,61 @@
 				<span aria-hidden="true">&times;</span>
 			</button>
 		</div>
+			<%-- alert con lista errori --%>
+	<div class="alert alert-danger ${not empty userErrors?'':'d-none' }" role="alert">
+		<c:forEach var = "errorItem" items="${userErrors }">
+        	<ul>
+				<li> ${errorItem }</li>	
+			</ul>
+      	</c:forEach>
+	</div>
 
          <div class='card'>
 		    <div class='card-header'>
-		        <h5>Cerca tavolo</h5> 
+		        <h5>Cerca Utente</h5> 
 		    </div>
-		 	<%-- alert con lista errori --%>
-			<div class="alert alert-danger ${not empty tavoloErrors?'':'d-none' }" role="alert">
-				<c:forEach var = "errorItem" items="${tavoloErrors }">
-		        	<ul>
-						<li> ${errorItem }</li>	
-					</ul>
-		      	</c:forEach>
-			</div>
+
 		<!-- Main jumbotron for a primary marketing message or call to action -->
 
 		<div class='card-body'>
-			<form action="${pageContext.request.contextPath}/tavolo/ExecuteSearchTavoloServlet" method="get">
-			<input class = "form-control" type = "hidden" name ="idUser" id = "idUtente" value = "${userAttribute.id}">
+			<form action="${pageContext.request.contextPath}/admin/ExecuteSearchUtenteServlet" method="post">
+			
 				
 					<div class="form-group col-md-6">
-						<label>Esperienza Minima </label> <input class="form-control" type="number" id= "esperienzaMin"name="esperienza" >
+						<label>Nome</label> <input class="form-control" type="text" id= "nome" name="nome" >
 					</div>
 					<div class="form-group col-md-6">
-						<label>Puntata Minima</label> <input class="form-control" type="number" step = "0.50" id= "cifraMin" name="cifra" >
+						<label>Cognome</label> <input class="form-control" type="text" id= "cognome" name="cognome" >
 					</div>
 					<div class="form-group col-md-6">
-						<label>Denominanzione</label> <input class="form-control" type="text" id= "denom" name="denominazione" >
+						<label>Username</label> <input class="form-control" type="text" id= "username" name="username" >
 					</div>
 					<div class="form-group col-md-6">
-						<label>Data Creazione</label> <input class="form-control" type="date" id= "data" name="data" >
+						<label>Data Registrazione</label> <input class="form-control" type="date" id= "data" name="data" >
 					</div>
-
+					
+					<div class="form-group col-md-6">
+	                          <label>Stato</label>
+	                             <select id="listaStati" name="stato" class="form-control" >	
+				                   <option value="${NULL}">- Seleziona Stato -</option>
+					               <c:forEach items="${listaStati}" var="stato">
+					                <c:if test="${stato != 'NULL' }">
+						             <option value="${stato}"><c:out value="${stato}"/></option>
+						            </c:if>
+					               </c:forEach>
+				                 </select>
+				   </div>
+				   	<div class="form-group col-md-6">
+	                          <label>Ruoli</label>
+	                             <select id="listaRuoli" name="idRuolo" class="form-control" >	
+				                   <option value="${NULL}">- Seleziona Ruolo -</option>
+					               <c:forEach items="${listaRuoli}" var="ruolo">
+					                <c:if test="${ruolo != 'NULL' }">
+						             <option value="${ruolo.id}">"${ruolo.codice}"</option>
+						            </c:if>
+					               </c:forEach>
+				                 </select>
+				   </div>
 				
 				<button type="submit" name="submit" value="submit" id="submit"
 					class="btn btn-primary">Cerca</button>
@@ -90,7 +113,7 @@
 			</form>
 			</div>
 			<div class='card-footer'>
-					<a href="${pageContext.request.contextPath}/tavolo/gestioneTavolo.jsp"
+					<a href="${pageContext.request.contextPath}/partita/.jsp"
 						class='btn btn-outline-secondary' style='width: 80px'> <i
 						class='fa fa-chevron-left'></i> Back
 					</a>

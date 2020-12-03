@@ -1,4 +1,4 @@
-package it.pokeronline.web.servlet.tavolo;
+package it.pokeronline.web.servlet.partita;
 
 import java.io.IOException;
 
@@ -14,25 +14,23 @@ import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import it.pokeronline.service.tavolo.TavoloService;
 
-
 /**
- * Servlet implementation class PrepareDeleteTavoloServlet
+ * Servlet implementation class VisualizzaPartitaServlet
  */
-@WebServlet("/tavolo/PrepareDeleteTavoloServlet")
-public class PrepareDeleteTavoloServlet extends HttpServlet {
+@WebServlet("/VisualizzaPartitaServlet")
+public class VisualizzaPartitaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	@Autowired
 	private TavoloService tavoloService;
 	
 
-	
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
 		SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
 	}
-    public PrepareDeleteTavoloServlet() {
+    public VisualizzaPartitaServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -41,10 +39,9 @@ public class PrepareDeleteTavoloServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	 String idTavoloInput = request.getParameter("idTavolo");
-	 
-		request.setAttribute("delete", tavoloService.caricaSingoloTavolo(Long.parseLong(idTavoloInput)));
-		request.getRequestDispatcher("/tavolo/deleteTavolo.jsp").forward(request, response);
+		String idInput = request.getParameter("idTavolo");
+		request.setAttribute("tavoloDettaglio", tavoloService.caricaSingoloTavolo(Long.parseLong(idInput)));
+		request.getRequestDispatcher("/partita/visualizzaPartita.jsp").forward(request, response);
 	}
 
 	/**

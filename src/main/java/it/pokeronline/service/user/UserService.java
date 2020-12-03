@@ -25,4 +25,10 @@ public interface UserService {
 	public User cercaByRuolo( String username, String password) throws Exception;
 	
 	public List<User> listaByRuolo();
+
+	public List<User> ricercaUtente(User utente);
+
+	public List<User> ListUtentiRuoli();
+
+	public User caricaSingoloUserConRuoli(Long id);
 }

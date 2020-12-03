@@ -3,6 +3,7 @@ package it.pokeronline.service.tavolo;
 import java.util.List;
 
 import it.pokeronline.model.tavolo.Tavolo;
+import it.pokeronline.model.user.User;
 
 
 
@@ -19,6 +20,6 @@ public interface TavoloService {
 
 	public List<Tavolo> findByExample(Tavolo example);
 
-	public List<Tavolo> ricercaPerPlayManagment(Tavolo example);
+	public List<Tavolo> ricercaPerPlayManagment(Tavolo example, User userInSessione);
 
 }

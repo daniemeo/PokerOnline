@@ -1,9 +1,7 @@
 package it.pokeronline.web.servlet.tavolo;
 
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -18,6 +16,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
+import it.pokeronline.dto.TavoloDTO;
 import it.pokeronline.model.tavolo.Tavolo;
 import it.pokeronline.model.user.User;
 import it.pokeronline.service.tavolo.TavoloService;
@@ -28,7 +27,7 @@ import it.pokeronline.service.user.UserService;
 /**
  * Servlet implementation class ExecuteSearchTavoloServlet
  */
-@WebServlet("/ExecuteSearchTavoloServlet")
+@WebServlet("/tavolo/ExecuteSearchTavoloServlet")
 public class ExecuteSearchTavoloServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -53,29 +52,29 @@ public class ExecuteSearchTavoloServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Long idUtenteInput = StringUtils.isNumeric(request.getParameter("idUser"))?Long.parseLong(request.getParameter("idUser")):null;
-		Long esperienzaMinInput =StringUtils.isNumeric(request.getParameter("esperienza"))?Long.parseLong(request.getParameter("esperienza")):null;
-		Double cifraMinInput =StringUtils.isNumeric(request.getParameter("cifra"))?Double.parseDouble(request.getParameter("cifra")):null;
+		String esperienzaMinInput = request.getParameter("esperienza");
+		String cifraMinInput = request.getParameter("cifra");
+		String dataInput = request.getParameter("data");
 		String denominazioneInput = StringUtils.isNotEmpty(request.getParameter("denominazione"))? request.getParameter("denominazione"):null;
 		
+		TavoloDTO tavoloDTO = new TavoloDTO(esperienzaMinInput, cifraMinInput,denominazioneInput, dataInput);
 		
-		try {
-			
-		Date DateInput = StringUtils.isNotEmpty(request.getParameter("data"))? new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("data")) : null;
-		 Tavolo tavolo = new Tavolo(esperienzaMinInput, cifraMinInput, denominazioneInput,DateInput);
-		 if( StringUtils.isNotEmpty(request.getParameter("data"))){
-			 Date data1 = StringUtils.isNumeric(request.getParameter("data"))? new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("data")) : null;
-			 tavolo.setDataCreazione(data1);
-		 }
-		 User user = userService.caricaSingoloUser(idUtenteInput);
-		 tavolo.setUser(user);
-			request.setAttribute("listaTavoli", tavoloService.findByExample(tavolo));
-			RequestDispatcher rd = request.getRequestDispatcher("/tavolo/resultSearch.jsp");
-			rd.forward(request, response);
-		} catch (ParseException e) {
-			
-			e.printStackTrace();
+		List<String> tavoloErrors = tavoloDTO.errorSearch();
+		if (!tavoloErrors.isEmpty()) {
+			request.setAttribute("userAttribute", userService.caricaSingoloUser(idUtenteInput));
+			request.setAttribute("tavoloAttribute", tavoloDTO);
+			request.setAttribute("tavoloErrors", tavoloErrors);
+			request.getRequestDispatcher("/tavolo/searchTavolo.jsp").forward(request, response);
+			return;
 		}
 		
+			
+	     Tavolo tavoloInstance = TavoloDTO.buildModelFromDtoPerSearch(tavoloDTO);
+		 User user = userService.caricaSingoloUser(idUtenteInput);
+		 tavoloInstance.setUser(user);
+			request.setAttribute("listaTavoli", tavoloService.findByExample(tavoloInstance));
+			RequestDispatcher rd = request.getRequestDispatcher("/tavolo/resultSearch.jsp");
+			rd.forward(request, response);
 	}
 
 	/**

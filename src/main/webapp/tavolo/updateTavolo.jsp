@@ -46,7 +46,7 @@
 				<h5>Modifica tavolo</h5>
 			</div>
 			<div class='card-body'>
-				<form method="post" action="${pageContext.request.contextPath}/ExecuteUpdateTavoloServlet" novalidate="novalidate">
+				<form method="post" action="${pageContext.request.contextPath}/tavolo/ExecuteUpdateTavoloServlet" novalidate="novalidate">
 					<div class="form-row">
 						<input type="hidden" name="idTavolo" id="idTavolo" value="${requestScope.tavoloAttribute.id}">
 						<input type="hidden" name="idUser" id="idUser" value="${requestScope.userAttribute.id}">
@@ -68,11 +68,7 @@
 					<button type="submit" name="submit" value="submit" id="submit" class="btn btn-primary">Conferma</button>
 				</form>
 			</div>
-			<div class='card-footer'>
-				<a href="formCercaLibro.jsp" class='btn btn-outline-secondary'
-					style='width: 80px'> <i class='fa fa-chevron-left'></i> Back
-				</a>
-			</div>
+			
 			<!-- end card-body -->
 		</div>
 		<!-- end container -->

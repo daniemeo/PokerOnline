@@ -61,7 +61,7 @@ public class ExecuteRegistrazioneServlet extends HttpServlet {
 		String creditoInput = request.getParameter("credito");
 		
 		esperienzaInput = esperienzaInput.isEmpty() ? Long.toString(0) : esperienzaInput;
-		creditoInput = creditoInput.isEmpty() ? Double.toString(0.0) : creditoInput;
+		creditoInput = creditoInput.isEmpty() ? Integer.toString(0) : creditoInput;
 		
 		UserDTO userDTO = new UserDTO(nomeInput, cognomeInput, usernameInput,passwordInput, esperienzaInput, creditoInput);
 		List<String> userErrors = userDTO.errors();
@@ -73,7 +73,7 @@ public class ExecuteRegistrazioneServlet extends HttpServlet {
 		}
 		User userInstance = UserDTO.buildModelFromDto(userDTO);
 		userInstance.setExpAccumulata(0L);
-		userInstance.setCreditoAccumulato(0.0);
+		userInstance.setCreditoAccumulato(0);
 		userService.inserisciNuovo(userInstance);
 		
 		request.setAttribute("successMessage", "Registrazione avvenuta con successo");

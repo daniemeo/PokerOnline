@@ -27,8 +27,16 @@
 	      <h1 class="display-3">Gestione Partita!</h1>
 	     
 	      <p><a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/PrepareCompraCreditoServlet?idUser=${user.id}" role="button"> Compra credito &raquo;</a></p>
-	       <p><a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/PrepareSearchPartitaServlet?idUser=${user.id}" role="button">Go to last game &raquo;</a></p>
-            <p><a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/PrepareSearchPartitaServlet" role="button">Ricerca &raquo;</a></p>
+			<c:if test="${!showRicerca }">
+				<p><a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/PrepareGiocaPartitaSerlvlet?idTavolo=${user.tavolo.id}" role="button">Go to last game &raquo;</a></p>
+           
+			</c:if>
+	        
+            <c:if test="${showRicerca }">
+	            <p><a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/PrepareSearchPartitaServlet" role="button">Ricerca &raquo;</a></p>
+            </c:if>
+            
+	    
 	    </div>
 	  </div>
 	  

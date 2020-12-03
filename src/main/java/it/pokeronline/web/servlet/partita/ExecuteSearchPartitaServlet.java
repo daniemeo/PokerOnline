@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -17,6 +18,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
+import it.pokeronline.dto.TavoloDTO;
 import it.pokeronline.model.tavolo.Tavolo;
 import it.pokeronline.model.user.User;
 import it.pokeronline.service.tavolo.TavoloService;
@@ -56,30 +58,38 @@ public class ExecuteSearchPartitaServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		String denominazioneInput = StringUtils.isNotEmpty(request.getParameter("denominazione"))? request.getParameter("denominazione"):null;
-		Double cifraMinInput =StringUtils.isNumeric(request.getParameter("cifra"))?Double.parseDouble(request.getParameter("cifra")):null;
+		String cifraMinInput = request.getParameter("cifra");
 		Long idGiocatoreInput = StringUtils.isNumeric(request.getParameter("idGiocatore"))?Long.parseLong(request.getParameter("idGiocatore")):null;
 		Long idCreatoreInput = StringUtils.isNumeric(request.getParameter("idCreatore"))?Long.parseLong(request.getParameter("idCreatore")):null;
-		try {
-			Date dateInput = StringUtils.isNotEmpty(request.getParameter("data"))? new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("data")) : null;
-			 Tavolo tavolo = new Tavolo(cifraMinInput, denominazioneInput,dateInput);
-			 if(idCreatoreInput != null) {
-			 User user = new User(idCreatoreInput);
-			 tavolo.setUser(user);
-			 }
-			 if(idGiocatoreInput != null) {
-			 User userGio = new User(idGiocatoreInput);
-			 tavolo.getUsers().add(userGio);
-			 }
-			 
-				request.setAttribute("listaTavoli", tavoloService.ricercaPerPlayManagment(tavolo));
-				RequestDispatcher rd = request.getRequestDispatcher("/partita/resultPartitaSearch.jsp"); // fai la pagina!!!!
-				rd.forward(request, response); 
+		String dateInput = request.getParameter("data");
+		boolean search = true;
+		    TavoloDTO tavoloDTO = new TavoloDTO(denominazioneInput,dateInput,cifraMinInput,search);
+			List<String> tavoloErrors = tavoloDTO.errorSearchPartita();
+			if (!tavoloErrors.isEmpty()) {
+				request.setAttribute("tavoloAttribute", tavoloDTO);
+				request.setAttribute("tavoloErrors", tavoloErrors);
+				request.getRequestDispatcher("/tavolo/searchPartita.jsp").forward(request, response);
+				return;
+			}
 			
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			Tavolo tavoloInstance = TavoloDTO.buildModelFromDtoPerSearchPartita(tavoloDTO);
+			if (idCreatoreInput != null) {
+				User user = new User(idCreatoreInput);
+				tavoloInstance.setUser(user);
+			}
+			if (idGiocatoreInput != null) {
+				User userGio = new User(idGiocatoreInput);
+				tavoloInstance.getUsers().add(userGio);
+			}
+			User userInSessione = (User) request.getSession().getAttribute("user");
+
+			request.setAttribute("listaTavoli", tavoloService.ricercaPerPlayManagment(tavoloInstance, userInSessione));
+			RequestDispatcher rd = request.getRequestDispatcher("/partita/resultPartitaSearch.jsp"); 
+			rd.forward(request, response);
+			
+		
 	}
 
 }

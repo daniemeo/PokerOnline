@@ -23,15 +23,14 @@ import it.pokeronline.service.user.UserService;
 /**
  * Servlet implementation class ExecuteInsertTavoloServlet
  */
-@WebServlet("/ExecuteInsertTavoloServlet")
+@WebServlet("/tavolo/ExecuteInsertTavoloServlet")
 public class ExecuteInsertTavoloServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Autowired
 	private TavoloService tavoloService;
 	
-	@Autowired
-	private UserService userService;
+
 
 	@Override
 	public void init(ServletConfig config) throws ServletException {

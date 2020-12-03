@@ -18,7 +18,7 @@ import it.pokeronline.service.user.UserService;
 /**
  * Servlet implementation class PrepareUpdateTavoloSerlvlet
  */
-@WebServlet("/PrepareUpdateTavoloSerlvlet")
+@WebServlet("/tavolo/PrepareUpdateTavoloSerlvlet")
 public class PrepareUpdateTavoloSerlvlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	

@@ -8,31 +8,35 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
+import it.pokeronline.model.tavolo.Tavolo;
 import it.pokeronline.model.user.User;
+import it.pokeronline.service.tavolo.TavoloService;
 import it.pokeronline.service.user.UserService;
 
 /**
- * Servlet implementation class ExecuteCompraCreditoServlet
+ * Servlet implementation class PrepareGiocaServlet
  */
-@WebServlet("/ExecuteCompraCreditoServlet")
-public class ExecuteCompraCreditoServlet extends HttpServlet {
+@WebServlet("/ExecuteGiocaPartitaServlet")
+public class ExecuteGiocaPartitaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-
-	
 	@Autowired
 	private UserService userService;
-
+    
+	@Autowired
+	private TavoloService tavoloService;
+	
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
 		SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
 	}
-    public ExecuteCompraCreditoServlet() {
+    public ExecuteGiocaPartitaServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -41,38 +45,34 @@ public class ExecuteCompraCreditoServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("user");
+		Integer creditoNuovo;
+		double segno = Math.random();
+		Integer somma = (int) (Math.random()*1000);
+		Double tot = segno < 0.5 ? -1.0*somma : +1.0*somma;
+		creditoNuovo = (int) (user.getCreditoAccumulato() + tot);
+		creditoNuovo = creditoNuovo < 0 ? 0 : creditoNuovo;
+		user.setCreditoAccumulato(creditoNuovo);
+		userService.aggiorna(user);
+		request.getSession().setAttribute("user", user);
+		if (segno >= 0.5){
+			request.setAttribute("successMessage", "Hai vinto!");
+		} else {
+			request.setAttribute("errorMessage", "Hai perso!");
+			request.setAttribute("isAlVerde", creditoNuovo == 0);
+		}
+		
+		request.getRequestDispatcher("/partita/gioca.jsp").forward(request, response);
+		
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String idUtente = request.getParameter("idUser");
-		String cifraInput = request.getParameter("cifra");
-		Long id = Long.parseLong(idUtente);
-		if(cifraInput == null || cifraInput.isEmpty())  {
-			request.setAttribute("errorMessage", "Il valore del campo deve essere positivo e maggiore di zero");
-			request.getRequestDispatcher("partita/compraCifra.jsp").forward(request, response);
-			return;
-		}
-		Integer cifra = Integer.parseInt(cifraInput);
-		
-		if(cifra <= 0) {
-			request.setAttribute("errorMessage", "Il valore del campo deve essere positivo e maggiore di zero");
-			request.getRequestDispatcher("partita/compraCifra.jsp").forward(request, response);
-		}
-		else {
-			User user = userService.caricaSingoloUser(id);
-			user.setCreditoAccumulato(user.getCreditoAccumulato() + cifra);
-			userService.aggiorna(user);
-			
-			// vado in pagina con ok
-			request.setAttribute("successMessage", "complimenti!!");
-			request.getRequestDispatcher("/partita/compraCifra.jsp").forward(request, response);
-		}
-		
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
 }

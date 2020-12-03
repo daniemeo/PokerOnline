@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class PrepareGestioneTavoloServlet
  */
-@WebServlet("/PrepareGestioneTavoloServlet")
+@WebServlet("/tavolo/PrepareGestioneTavoloServlet")
 public class PrepareGestioneTavoloServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

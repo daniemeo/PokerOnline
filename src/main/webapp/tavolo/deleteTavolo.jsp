@@ -31,11 +31,11 @@
    	  <div class='card-body'>
 	     Vuoi eliminare il tavolo?
 	   </div>
-	<form method="post" action="${pageContext.request.contextPath}/ExecuteDeleteTavoloServlet" novalidate="novalidate">
+	<form method="post" action="${pageContext.request.contextPath}/tavolo/ExecuteDeleteTavoloServlet" novalidate="novalidate">
 				<input type="hidden" name="idTavolo" id="idTavolo" value= "${requestScope.delete.id}">
 					
   				<button type="submit" name="submit" value="submit" id="submit" class="btn btn-primary">Conferma</button>
-  				<a href="${pageContext.request.contextPath}/PrepareGestioneTavoloServlet"
+  				<a href="${pageContext.request.contextPath}/tavolo/PrepareGestioneTavoloServlet"
 		         class='btn btn-outline-secondary' style='width:80px'>
 		            <i class='fa fa-chevron-left'></i> Back
 		        </a>

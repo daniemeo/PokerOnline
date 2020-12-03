@@ -1,6 +1,9 @@
-package it.pokeronline.web.servlet.tavolo;
+package it.pokeronline.web.servlet.admin;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -12,27 +15,27 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
-import it.pokeronline.service.tavolo.TavoloService;
+import it.pokeronline.model.user.StatoUser;
+import it.pokeronline.service.ruolo.RuoloService;
 
 
 /**
- * Servlet implementation class PrepareDeleteTavoloServlet
+ * Servlet implementation class PrepareSearchUserServlet
  */
-@WebServlet("/tavolo/PrepareDeleteTavoloServlet")
-public class PrepareDeleteTavoloServlet extends HttpServlet {
+@WebServlet("/admin/PrepareSearchUserServlet")
+public class PrepareSearchUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-	@Autowired
-	private TavoloService tavoloService;
-	
 
+	@Autowired
+	private RuoloService ruoloService;
 	
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
 		SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
 	}
-    public PrepareDeleteTavoloServlet() {
+    public PrepareSearchUserServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -41,10 +44,12 @@ public class PrepareDeleteTavoloServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	 String idTavoloInput = request.getParameter("idTavolo");
+     List<String> listaStati = Stream.of(StatoUser.values()).map(Enum::name).collect(Collectors.toList());
 	 
-		request.setAttribute("delete", tavoloService.caricaSingoloTavolo(Long.parseLong(idTavoloInput)));
-		request.getRequestDispatcher("/tavolo/deleteTavolo.jsp").forward(request, response);
+	 
+		request.setAttribute("listaStati", listaStati);
+		request.setAttribute("listaRuoli", ruoloService.listAllRuolo() );
+		request.getRequestDispatcher("/admin/cercaUtente.jsp").forward(request, response);
 	}
 
 	/**

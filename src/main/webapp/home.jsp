@@ -7,14 +7,14 @@
     <jsp:include page="./header.jsp" />
     
     <!-- Custom styles for this template -->
-    <link href="./assets/css/global.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/assets/css/global.css" rel="stylesheet">
     <style type="text/css">
     	body {
 		  padding-top: 3.5rem;
 		}	
     </style>
     
-    <title>Gestione deglla biblioteca!</title>
+    <title> Poker Online!</title>
   </head>
   <body>
   	<jsp:include page="./navbar.jsp"></jsp:include>
@@ -23,13 +23,13 @@
 	  <div class="jumbotron" >
 	    <div class="container">
 	      <h1 class="display-3">Benvenuto nel nostro Poker Online !</h1>
-	      
-	      <p><a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/PrepareGestioneTavoloServlet" role="button"> Gestione Tavolo &raquo;</a></p>
-	      <c:if test="${sessionScope.isSpecialPlayer eq 'true' || sessionScope.isAdmin eq 'true'}">
+	        <c:if test="${sessionScope.isSpecialPlayer eq 'true' || sessionScope.isAdmin eq 'true'}">
+	      <p><a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/tavolo/PrepareGestioneTavoloServlet" role="button"> Gestione Tavolo &raquo;</a></p>
+	        </c:if>
 	       <p><a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/PrepareGestionePartitaServlet?idUser=${user.id}" role="button"> Play Management &raquo;</a></p>
-	       </c:if>
+	     
 	         <c:if test="${sessionScope.isAdmin eq 'true' }">
-	        <p><a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/PrepareInsertTavoloServlet" role="button"> Gestione Amministrazione &raquo;</a></p>
+	        <p><a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/admin/PrepareSearchUserServlet" role="button"> Gestione Amministrazione &raquo;</a></p>
 	        </c:if>
 	    </div>
 	  </div>

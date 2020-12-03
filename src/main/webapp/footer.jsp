@@ -1,4 +1,4 @@
 
 <footer class="footer">
-	<p>&copy; My Great Company 2020</p>
+	<p>&copy; Daniela Meogrossi 2020</p>
 </footer>

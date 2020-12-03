@@ -78,11 +78,11 @@
 								<td><c:out value="${tavolo.cifraMin}"></c:out></td>
 								<td><c:out value="${tavolo.dataCreazione}"></c:out></td>
 								
-								<td><a class="btn  btn-sm btn-outline-secondary" href="${pageContext.request.contextPath}/DettaglioTavoloServlet?idTavolo=${tavolo.id}"> Visualizza</a> 
+								<td><a class="btn  btn-sm btn-outline-secondary" href="${pageContext.request.contextPath}/tavolo/DettaglioTavoloServlet?idTavolo=${tavolo.id}"> Visualizza</a> 
 								 
-									 <a class="btn  btn-sm btn-outline-primary ml-2 mr-2" href="${pageContext.request.contextPath}/PrepareUpdateTavoloSerlvlet?idTavolo=${tavolo.id}&idUser=${user.id}">Edit</a>
+									 <a class="btn  btn-sm btn-outline-primary ml-2 mr-2" href="${pageContext.request.contextPath}/tavolo/PrepareUpdateTavoloSerlvlet?idTavolo=${tavolo.id}&idUser=${user.id}">Edit</a>
                                
-									 <a class="btn btn-outline-danger btn-sm" href="${pageContext.request.contextPath}/PrepareDeleteTavoloServlet?idTavolo=${tavolo.id}">Delete</a>
+									 <a class="btn btn-outline-danger btn-sm" href="${pageContext.request.contextPath}/tavolo/PrepareDeleteTavoloServlet?idTavolo=${tavolo.id}">Delete</a>
 								
 								</td>
 

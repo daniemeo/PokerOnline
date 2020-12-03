@@ -8,7 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Ruolo {	
+public class Ruolo {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,6 +16,7 @@ public class Ruolo {
 	@Enumerated(EnumType.STRING)
 	private Codice codice;
 	private String descrizione;
+
 	public Ruolo() {
 	}
 
@@ -46,6 +47,11 @@ public class Ruolo {
 
 	public void setCodice(Codice codice) {
 		this.codice = codice;
+	}
+
+	@Override
+	public String toString() {
+		return "Ruolo [codice=" + codice + ", descrizione=" + descrizione + "]";
 	}
 
 }

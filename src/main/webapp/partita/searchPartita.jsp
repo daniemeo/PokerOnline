@@ -50,6 +50,14 @@
 				<span aria-hidden="true">&times;</span>
 			</button>
 		</div>
+			<%-- alert con lista errori --%>
+			<div class="alert alert-danger ${not empty tavoloErrors?'':'d-none' }" role="alert">
+				<c:forEach var = "errorItem" items="${tavoloErrors }">
+		        	<ul>
+						<li> ${errorItem }</li>	
+					</ul>
+		      	</c:forEach>
+			</div>
 
          <div class='card'>
 		    <div class='card-header'>

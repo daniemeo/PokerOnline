@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
-import it.pokeronline.service.tavolo.TavoloService;
 import it.pokeronline.service.user.UserService;
 
 /**

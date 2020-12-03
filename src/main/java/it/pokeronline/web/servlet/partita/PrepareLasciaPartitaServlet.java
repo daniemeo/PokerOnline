@@ -1,25 +1,23 @@
-package it.pokeronline.web.servlet.tavolo;
+package it.pokeronline.web.servlet.partita;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import it.pokeronline.dto.TavoloDTO;
-
-
-
 /**
- * Servlet implementation class PrepareInsertTavoloServlet
+ * Servlet implementation class PrepareLasciaPartitaServlet
  */
-@WebServlet("/tavolo/PrepareInsertTavoloServlet")
-public class PrepareInsertTavoloServlet extends HttpServlet {
+@WebServlet("/PrepareLasciaPartitaServlet")
+public class PrepareLasciaPartitaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-    public PrepareInsertTavoloServlet() {
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public PrepareLasciaPartitaServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,9 +26,8 @@ public class PrepareInsertTavoloServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		request.setAttribute("tavoloAttribute", new TavoloDTO());
-		request.getRequestDispatcher("/tavolo/inserisciTavolo.jsp").forward(request, response);
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**

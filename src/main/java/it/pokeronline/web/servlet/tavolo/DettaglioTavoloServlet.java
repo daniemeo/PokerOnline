@@ -17,7 +17,7 @@ import it.pokeronline.service.tavolo.TavoloService;
 /**
  * Servlet implementation class DettaglioTavoloServlet
  */
-@WebServlet("/DettaglioTavoloServlet")
+@WebServlet("/tavolo/DettaglioTavoloServlet")
 public class DettaglioTavoloServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	@Autowired
