@@ -9,6 +9,36 @@
 
 <!-- style per le pagine diverse dalla index -->
 <link href="${pageContext.request.contextPath}/assets/css/global.css" rel="stylesheet">
+ <script type="text/javascript">
+    
+        $(document).ready(function() {
+    	$("form").submit(function( event ) {
+			$("#errorNome").hide();
+			$("#errorCognome").hide();
+			$("#errorUsername").hide();
+			
+			var controlli = true;
+			if(!$("#nome")[0].value) {
+				$("#errorNome").show();
+				controlli= false;
+			}
+			if(!$("#cognome")[0].value){
+				$("#errorCognome").show();
+				controlli= false;
+			}
+			if(!$("#username")[0].value){
+				$("#errorUsername").show();
+				controlli= false;
+			}
+			
+			if(!controlli) {
+				event.preventDefault();
+			} 
+		});
+    }) 
+		
+
+</script>
 </head>
 <body>
 	<jsp:include page="/navbar.jsp" />
@@ -52,15 +82,24 @@
 						<div class="form-group col-md-6">
 							<label>Nome <span class="text-danger"></span></label> 
 							<input type="text" name="nome" id="nome" class="form-control" value="${requestScope.userAttribute.nome}">
+							  <div class="invalid-feedback" id= "errorNome">
+                                 Attenzione! Devi inserire il nome!
+                              </div>
 						</div>
 						
 						<div class="form-group col-md-6">
 							<label>Cognome<span class="text-danger"></span></label>
 							<input type="text" name="cognome" id="cognome" class="form-control" value="${requestScope.userAttribute.cognome}">
+							<div class="invalid-feedback" id = "errorCognome">
+                     			 Attenzione! Devi inserire il cognome!
+                  		   </div>
 						</div>
 							<div class="form-group col-md-6">
 							<label>Username <span class="text-danger"></span></label>
 							<input type="text" name="username" id="username" class="form-control" value="${requestScope.userAttribute.username}">
+							<div class="invalid-feedback" id = "errorUsername">
+                      	       Attenzione! Devi inserire username!
+                 	        </div>
 						</div>
 					<c:if test="${isCreato == true }">
 						<div class="form-group col-md-6">

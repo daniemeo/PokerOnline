@@ -59,7 +59,7 @@
 			</form>
 			</div>
 			<div class='card-footer'>
-					<a href="${pageContext.request.contextPath}/PrepareCompraCreditoServlet?idUser=${user.id}"
+					<a href="${pageContext.request.contextPath}/partita/gestionePartita.jsp"
 						class='btn btn-outline-secondary' style='width: 80px'> <i
 						class='fa fa-chevron-left'></i> Back
 					</a>

@@ -1,6 +1,9 @@
 package it.pokeronline.dto;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -241,21 +244,24 @@ public class UserDTO {
 		return result;
 	}
 
-//	public static User DtoPerRicerca(UserDTO userDTO) {
-//		User result = new User();
-//		
-//		Date date = null; 
-//		if(userDTO.getDataRegistrazione() != null ) {
-//			try {
-//				date = new SimpleDateFormat("yyyy-MM-dd").parse(userDTO.getDataRegistrazione());
-//				result.setDataRegistrazione(date);
-//			} catch (ParseException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//		}
-//		//result.setId(userDTO.getId());
-//		return result;
-//	}
+	public static User dtoPerRicerca(UserDTO userDTO) {
+		User result = new User();
+		result.setNome(userDTO.getNome());
+		result.setCognome(userDTO.getCognome());
+		result.setUsername(userDTO.getUsername());
+		Date data = null;
+		if (userDTO.getDataRegistrazione()!= null) {
+			try {
+				data = new SimpleDateFormat("yyyy-MM-dd").parse(userDTO.getDataRegistrazione());
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+		}
+		result.setDataRegistrazione(data);
+		result.setStato(StatoUser.valueOf(userDTO.getStato()));
+		return result;
+	}
+	
+		
 
 }

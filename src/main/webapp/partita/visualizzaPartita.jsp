@@ -44,12 +44,6 @@
 				  <dt class="col-sm-3 text-right">Creatore</dt>
 				  <dd class="col-sm-9"><c:out value="${requestScope.tavoloDettaglio.user.nome}"/><br><c:out value="${requestScope.tavoloDettaglio.user.cognome}"/></dd>
 		    	</dl>
-		    	<dl class="row">
-				  <dt class="col-sm-3 text-right">Giocatore</dt>
-				  <dd class="col-sm-9"><c:out value="${requestScope.users.nome}"/><br><c:out value="${requestScope.users.cognome}"/></dd>
-		    	</dl>
-		    	
-		    	
 		    </div>
 		    
 		    <div class='card-footer'>

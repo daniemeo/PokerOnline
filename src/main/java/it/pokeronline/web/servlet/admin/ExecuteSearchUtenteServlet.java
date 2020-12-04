@@ -81,7 +81,7 @@ public class ExecuteSearchUtenteServlet extends HttpServlet {
 			if ( statoInInput != null && !statoInInput.isEmpty()) {
 				stato = StatoUser.valueOf(statoInInput);
 			}
-		//	User userInstance = UserDTO.buildModelFromDto(userDTO);
+		
 			User user = new User(nomeInput,cognomeInput,usernameInput,dateInput,stato);
 			if(ruoloInInput != null && !ruoloInInput.isEmpty()){
 				Ruolo ruolo = ruoloService.caricaSingoloRuolo(Long.parseLong(ruoloInInput));

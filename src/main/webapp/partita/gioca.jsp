@@ -56,7 +56,7 @@
 				<c:if test="${!isAlVerde }">
 			    	<p><a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/ExecuteGiocaPartitaServlet?idTavolo=${user.tavolo.id}" role="button"> Gioca &raquo;</a></p>
 		     	</c:if>
-		      	<p><a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/PrepareLasciaPartitaServlet?idUser=${user.id}" role="button"> Lascia &raquo;</a></p>
+		      	<p><a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/PrepareLasciaPartitaServlet?idTavolo=${user.tavolo.id}" role="button"> Lascia &raquo;</a></p>
 	      
 	    	</div>
 	  </div>

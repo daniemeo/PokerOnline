@@ -8,7 +8,45 @@
 	<title>Registrazione </title>
 	
 	<!-- style per le pagine diverse dalla index -->
+	<script src="${pageContext.request.contextPath}/assets/js/jquery-3.4.1.min.js"></script>
     <link rel="stylesheet" href="./assets/css/bootstrap.min.css" >
+   
+    
+ <script type="text/javascript">
+    
+        $(document).ready(function() {
+    	$("form").submit(function( event ) {
+			$("#errorNome").hide();
+			$("#errorCognome").hide();
+			$("#errorUsername").hide();
+			$("#errorPassword").hide();
+			var controlli = true;
+			if(!$("#nomeInputId")[0].value) {
+				$("#errorNome").show();
+				controlli= false;
+			}
+			if(!$("#cognomeInputId")[0].value){
+				$("#errorCognome").show();
+				controlli= false;
+			}
+			if(!$("#usernameInputId")[0].value){
+				$("#errorUsername").show();
+				controlli= false;
+			}
+			if(!$("#passwordInputId")[0].value){
+				$("#errorPassword").show();
+				controlli= false;
+			}
+			
+			if(!controlli) {
+				event.preventDefault();
+			} 
+		});
+    }) 
+		
+
+</script>
+</head>
 <body>
 
 <div class="container">
@@ -28,29 +66,41 @@
       	</c:forEach>
 	</div>
 
-      	<form class="form-horizontal" action="${pageContext.request.contextPath }/ExecuteRegistrazioneServlet" method="post">
+      	<form class="form-horizontal" action="${pageContext.request.contextPath }/ExecuteRegistrazioneServlet" method="post" >
       		<div class="form-group">
       			<label class="control-label col-sm-2" for="nomeInputId">Nome:</label>
 	    		<div class="col-sm-4">
-					<input class="form-control" type="text" id="nomeInputId" name="nome" value="${utenteAttribute.nome }">
+					<input class="form-control" type="text" id="nomeInputId" name="nome" value="${utenteAttribute.nome }" >
+				    <div class="invalid-feedback" id= "errorNome">
+                         Attenzione! Devi inserire il nome!
+                    </div>
 			 	</div>
   			</div>
   			<div class="form-group">
       			<label class="control-label col-sm-2" for="cognomeInputId">Cognome:</label>
 	    		<div class="col-sm-4">
-					<input class="form-control" type="text" id="cognomeInputId" name="cognome" value="${utenteAttribute.cognome }">
+					<input class="form-control" type="text" id="cognomeInputId" name="cognome" value="${utenteAttribute.cognome }" >
+					<div class="invalid-feedback" id = "errorCognome">
+                      Attenzione! Devi inserire il cognome!
+                    </div>
 			 	</div>
   			</div>
 			<div class="form-group">
       			<label class="control-label col-sm-2" for="usernameInputId">Username:</label>
 	    		<div class="col-sm-4">
 					<input class="form-control" type="text" id="usernameInputId" name="username" value="${utenteAttribute.username }">
+					<div class="invalid-feedback" id = "errorUsername">
+                      	Attenzione! Devi inserire username!
+                 	</div>
 			 	</div>
   			</div>
   			<div class="form-group">
       			<label class="control-label col-sm-2" for="passwordInputId">Password:</label>
 	    		<div class="col-sm-4">
-					<input class="form-control" type="text" id="passwordInputId" name="password" value="${utenteAttribute.password }">
+					<input class="form-control" type="text" id="passwordInputId" name="password" value="${utenteAttribute.password }" required>
+					<div class="invalid-feedback" id = "errorPassword">
+                      	Attenzione! Devi inserire la password!
+                 	</div>
 			 	</div>
   			</div>
   			<input type = "hidden" name= "esperienza" id = "esperienza" value="${utenteAttribute.expAccumulata}" />

@@ -10,6 +10,38 @@
 <title>Inserisci Tavolo</title>
 <link href="${pageContext.request.contextPath}/assets/css/global.css"
 	rel="stylesheet">
+	
+	
+<script type="text/javascript">
+    
+        $(document).ready(function() {
+    	$("form").submit(function( event ) {
+			$("#errorEsperienza").hide();
+			$("#errorCifra").hide();
+			$("#errorDenominazione").hide();
+			
+			var controlli = true;
+			if(!$("#esperienzaMin")[0].value) {
+				$("#errorEsperienza").show();
+				controlli= false;
+			}
+			if(!$("#cifraMin")[0].value){
+				$("#errorCifra").show();
+				controlli= false;
+			}
+			if(!$("#denom")[0].value){
+				$("#errorDenominazione").show();
+				controlli= false;
+			}
+			
+			if(!controlli) {
+				event.preventDefault();
+			} 
+		});
+    }) 
+		
+
+</script>
 </head>
 <body>
 	<jsp:include page="/navbar.jsp" />
@@ -68,31 +100,39 @@
 		<!-- Main jumbotron for a primary marketing message or call to action -->
 
 		<div class='card-body'>
-			<form action="${pageContext.request.contextPath}/tavolo/ExecuteInsertTavoloServlet" method="post">
+			<form action="${pageContext.request.contextPath}/tavolo/ExecuteInsertTavoloServlet" method="post" class= "needs-validation">
 			
 				
 					<div class="form-group col-md-6">
-						<label>Esperienza Minima </label> <input class="form-control" type="number" id= "esperienzaMin"name="esperienza" >
+						<label>Esperienza Minima </label> 
+						<input class="form-control" type="number" id= "esperienzaMin" name="esperienza" >
+						<div class="invalid-feedback" id= "errorEsperienza">
+                             Attenzione! Devi inserire esperienza minima del tavolo!
+                        </div>
 					</div>
 					<div class="form-group col-md-6">
-						<label>Puntata Minima</label> <input class="form-control" type="number" step = "0.50" id= "cifraMin" name="cifra" >
+						<label>Puntata Minima</label>
+						<input class="form-control" type="number" id= "cifraMin" name="cifra"  >
+						<div class="invalid-feedback" id= "errorCifra">
+                             Attenzione! Devi inserire cifra minima del tavolo!
+                        </div>
 					</div>
 					<div class="form-group col-md-6">
-						<label>Denominanzione</label> <input class="form-control" type="text" id= "denom" name="denominazione" >
+						<label>Denominanzione</label> 
+						<input class="form-control" type="text" id= "denom" name="denominazione" >
+						<div class="invalid-feedback" id= "errorDenominazione">
+                             Attenzione! Devi inserire denominazione del tavolo!
+                        </div>
 					</div>
 					
 
-				
-				<button type="submit" name="submit" value="submit" id="submit"
-					class="btn btn-primary">Inserisci</button>
-
+				<button type="submit" name="submit" value="submit" id="submit" class="btn btn-primary">Inserisci</button>
 
 			</form>
 			</div>
 			<div class='card-footer'>
-					<a href="${pageContext.request.contextPath}/tavolo/gestioneTavolo.jsp"
-						class='btn btn-outline-secondary' style='width: 80px'> <i
-						class='fa fa-chevron-left'></i> Back
+					<a href="${pageContext.request.contextPath}/tavolo/gestioneTavolo.jsp" class='btn btn-outline-secondary' style='width: 80px'> 
+					<i class='fa fa-chevron-left'></i> Back
 					</a>
 				</div>
 		</div>

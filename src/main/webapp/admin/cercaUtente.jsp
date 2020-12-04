@@ -59,10 +59,10 @@
       	</c:forEach>
 	</div>
 
-         <div class='card'>
-		    <div class='card-header'>
-		        <h5>Cerca Utente</h5> 
-		    </div>
+     <div class='card'>
+	    <div class='card-header'>
+	        <h5>Cerca Utente</h5> 
+	    </div>
 
 		<!-- Main jumbotron for a primary marketing message or call to action -->
 
@@ -84,41 +84,38 @@
 					</div>
 					
 					<div class="form-group col-md-6">
-	                          <label>Stato</label>
-	                             <select id="listaStati" name="stato" class="form-control" >	
-				                   <option value="${NULL}">- Seleziona Stato -</option>
-					               <c:forEach items="${listaStati}" var="stato">
-					                <c:if test="${stato != 'NULL' }">
-						             <option value="${stato}"><c:out value="${stato}"/></option>
-						            </c:if>
-					               </c:forEach>
-				                 </select>
+                         <label>Stato</label>
+                            <select id="listaStati" name="stato" class="form-control" >	
+		                   		<option value="${NULL}">- Seleziona Stato -</option>
+			               		<c:forEach items="${listaStati}" var="stato">
+			                		<c:if test="${stato != 'NULL' }">
+				             			<option value="${stato}"><c:out value="${stato}"/></option>
+				            		</c:if>
+			               		</c:forEach>
+		                 	</select>
 				   </div>
 				   	<div class="form-group col-md-6">
-	                          <label>Ruoli</label>
-	                             <select id="listaRuoli" name="idRuolo" class="form-control" >	
-				                   <option value="${NULL}">- Seleziona Ruolo -</option>
-					               <c:forEach items="${listaRuoli}" var="ruolo">
-					                <c:if test="${ruolo != 'NULL' }">
-						             <option value="${ruolo.id}">"${ruolo.codice}"</option>
-						            </c:if>
-					               </c:forEach>
-				                 </select>
+                         <label>Ruoli</label>
+                         	<select id="listaRuoli" name="idRuolo" class="form-control" >	
+		                  	 	<option value="${NULL}">- Seleziona Ruolo -</option>
+		               			<c:forEach items="${listaRuoli}" var="ruolo">
+			                		<c:if test="${ruolo != 'NULL' }">
+				             			<option value="${ruolo.id}">"${ruolo.codice}"</option>
+				            		</c:if>
+			             	   </c:forEach>
+		                	 </select>
 				   </div>
-				
-				<button type="submit" name="submit" value="submit" id="submit"
-					class="btn btn-primary">Cerca</button>
-
-
+				   
+				<button type="submit" name="submit" value="submit" id="submit" class="btn btn-primary">Cerca</button>
 			</form>
-			</div>
-			<div class='card-footer'>
-					<a href="${pageContext.request.contextPath}/partita/.jsp"
-						class='btn btn-outline-secondary' style='width: 80px'> <i
-						class='fa fa-chevron-left'></i> Back
-					</a>
-				</div>
 		</div>
+		<div class='card-footer'>
+			<a href="${pageContext.request.contextPath}/home.jsp"
+				class='btn btn-outline-secondary' style='width: 80px'> <i
+				class='fa fa-chevron-left'></i> Back
+			</a>
+		</div>
+	</div>
 
 
 

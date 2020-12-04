@@ -32,11 +32,11 @@
 			$("#errorPassword").hide();
 			
 			var controlli = true;
-			if(!$("#username")[0].value) {
+			if(!$("#Idusername")[0].value) {
 				$("#errorUsername").show();
 				controlli= false;
 			}
-			if(!$("#password")[0].value){
+			if(!$("#Idpassword")[0].value){
 				$("#errorPassword").show();
 				controlli= false;
 			}

@@ -27,15 +27,13 @@
 	      <h1 class="display-3">Gestione Tavoli !</h1>
 	     
 	      <p><a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/tavolo/PrepareInsertTavoloServlet" role="button"> Inserisci Tavolo &raquo;</a></p>
-	       <p><a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/tavolo/PrepareSearchTavoloServlet?idUser=${user.id}" role="button"> Cerca i tuoi tavoli &raquo;</a></p>
+	      <p><a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/tavolo/PrepareSearchTavoloServlet?idUser=${user.id}" role="button"> Cerca i tuoi tavoli &raquo;</a></p>
 	      
 	    </div>
 	  </div>
 	  
 	  
 	    <hr>
-	
-	 
 	
 	</main>
 	

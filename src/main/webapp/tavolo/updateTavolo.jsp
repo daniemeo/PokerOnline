@@ -9,6 +9,37 @@
 
 <!-- style per le pagine diverse dalla index -->
 <link href="${pageContext.request.contextPath}/assets/css/global.css" rel="stylesheet">
+<script type="text/javascript">
+    
+        $(document).ready(function() {
+    	$("form").submit(function( event ) {
+    		$("#errorDenominazione").hide();
+			$("#errorEsperienza").hide();
+			$("#errorCifra").hide();
+			
+			
+			var controlli = true;
+			if(!$("#denominazione")[0].value){
+				$("#errorDenominazione").show();
+				controlli= false;
+			}
+			if(!$("#esperienza")[0].value) {
+				$("#errorEsperienza").show();
+				controlli= false;
+			}
+			if(!$("#cifra")[0].value){
+				$("#errorCifra").show();
+				controlli= false;
+			}
+			
+			if(!controlli) {
+				event.preventDefault();
+			} 
+		});
+    }) 
+		
+
+</script>
 </head>
 <body>
 	<jsp:include page="/navbar.jsp" />
@@ -53,15 +84,24 @@
 						<div class="form-group col-md-6">
 							<label>Denominazione <span class="text-danger"></span></label> 
 							<input type="text" name="denominazione" id="denominazione" class="form-control" value="${requestScope.tavoloAttribute.denominazione}">
+							<div class="invalid-feedback" id= "errorDenominazione">
+                             Attenzione! Devi inserire la denominazione del tavolo!
+                            </div>
 						</div>
 						
 						<div class="form-group col-md-6">
 							<label>Esperienza Minima <span class="text-danger"></span></label>
 							<input type="number" name="esperienza" id="esperienza" class="form-control" value="${requestScope.tavoloAttribute.expMin}">
+							<div class="invalid-feedback" id= "errorEsperienza">
+                             Attenzione! Devi inserire esperienza minima del tavolo!
+                        </div>
 						</div>
 							<div class="form-group col-md-6">
 							<label>Cifra Minima <span class="text-danger"></span></label>
 							<input type="number" name="cifra" id="cifra" class="form-control" value="${requestScope.tavoloAttribute.cifraMin}">
+							<div class="invalid-feedback" id= "errorCifra">
+                             Attenzione! Devi inserire cifra minima del tavolo!
+                             </div>
 						</div>
 						
 					</div>

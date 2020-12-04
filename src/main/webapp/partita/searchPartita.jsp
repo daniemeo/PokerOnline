@@ -78,7 +78,7 @@
 					</div>
 					
 					<div class="form-group col-md-6">
-						<label>Puntata Minima</label> <input class="form-control" type="number" step = "0.50" id= "cifraMin" name="cifra" >
+						<label>Puntata Minima</label> <input class="form-control" type="number" id= "cifraMin" name="cifra" >
 					</div>
 					
 						<div class="form-group col-md-6">
@@ -104,23 +104,16 @@
 						</select>
 					</div>
 					
-				
-				<button type="submit" name="submit" value="submit" id="submit"
-					class="btn btn-primary">Cerca</button>
-
+				<button type="submit" name="submit" value="submit" id="submit" class="btn btn-primary">Cerca</button>
 
 			</form>
 			</div>
 			<div class='card-footer'>
-					<a href="${pageContext.request.contextPath}/partita/.jsp"
-						class='btn btn-outline-secondary' style='width: 80px'> <i
-						class='fa fa-chevron-left'></i> Back
+					<a href="${pageContext.request.contextPath}/partita/gestionePartita.jsp" class='btn btn-outline-secondary' style='width: 80px'> 
+					<i class='fa fa-chevron-left'></i> Back
 					</a>
 				</div>
 		</div>
-
-
-
 
 
 	</main>

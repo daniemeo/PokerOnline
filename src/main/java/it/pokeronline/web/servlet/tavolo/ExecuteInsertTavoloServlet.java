@@ -18,7 +18,6 @@ import it.pokeronline.dto.TavoloDTO;
 import it.pokeronline.model.tavolo.Tavolo;
 import it.pokeronline.model.user.User;
 import it.pokeronline.service.tavolo.TavoloService;
-import it.pokeronline.service.user.UserService;
 
 /**
  * Servlet implementation class ExecuteInsertTavoloServlet
@@ -40,7 +39,7 @@ public class ExecuteInsertTavoloServlet extends HttpServlet {
 
 	public ExecuteInsertTavoloServlet() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	/**
@@ -49,7 +48,7 @@ public class ExecuteInsertTavoloServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 

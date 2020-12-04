@@ -13,9 +13,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
-import it.pokeronline.model.tavolo.Tavolo;
 import it.pokeronline.model.user.User;
-import it.pokeronline.service.tavolo.TavoloService;
 import it.pokeronline.service.user.UserService;
 
 /**
@@ -28,8 +26,6 @@ public class ExecuteGiocaPartitaServlet extends HttpServlet {
 	@Autowired
 	private UserService userService;
     
-	@Autowired
-	private TavoloService tavoloService;
 	
 	@Override
 	public void init(ServletConfig config) throws ServletException {

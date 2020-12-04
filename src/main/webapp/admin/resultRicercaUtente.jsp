@@ -79,15 +79,12 @@
 								<td><c:out value="${userRes.stato}"></c:out></td>
 								<td><a class="btn  btn-sm btn-outline-secondary" href="${pageContext.request.contextPath}/admin/VisualizzaUtenteServlet?idUser=${userRes.id}"> Visualizza</a> 
 									<a class="btn  btn-sm btn-outline-primary ml-2 mr-2" href="${pageContext.request.contextPath}/admin/PrepareUpdateUtenteServlet?idUser=${userRes.id}">Modifica</a>
-								    <a class="btn  btn-sm btn-outline-primary ml-2 mr-2" href="${pageContext.request.contextPath}/PrepareUpdateTavoloSerlvlet?idTavolo=${tavolo.id}&idUser=${userRes.id}">Disattiva/Attiva</a>
+								    <a class="btn  btn-sm btn-outline-primary ml-2 mr-2" href="${pageContext.request.contextPath}/admin/DisabilitaAbilitaUtenteServlet?idUser=${userRes.id}">Disattiva/Attiva</a>
 								     
 								</td> 
 
-
-
-
-							</tr>
-						</c:forEach>
+						   </tr>
+					   </c:forEach>
 					</tbody>
 				</table>
 				<div class='card-footer'>

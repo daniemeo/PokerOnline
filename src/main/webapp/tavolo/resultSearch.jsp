@@ -65,7 +65,6 @@
 							<th>Esperienza Minima</th>
 							<th>Puntata Minima</th>
 							<th>Data Creazione</th>
-                       
 
 						</tr>
 					</thead>
@@ -86,20 +85,15 @@
 								
 								</td>
 
-
-
-
 							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
 				<div class='card-footer'>
-		        <a href="${pageContext.request.contextPath}/PrepareSearchTavoloServlet?idUser=${user.id}"
-		         class='btn btn-outline-secondary' style='width:80px' >
-		            <i class='fa fa-chevron-left'></i> Back
-		        </a>
-		    </div>
-				
+		       		 <a href="${pageContext.request.contextPath}/tavolo/gestioneTavolo.jsp"  class='btn btn-outline-secondary' style='width:80px' >
+		               <i class='fa fa-chevron-left'></i> Back
+		       		 </a>
+		        </div>
 
 			</div>
 		</div>
