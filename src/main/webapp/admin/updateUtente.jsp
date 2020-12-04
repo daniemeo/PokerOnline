@@ -79,6 +79,8 @@
 				<form method="post" action="${pageContext.request.contextPath}/admin/ExecuteUpdateUtenteServlet" novalidate="novalidate">
 					<div class="form-row">
 						<input type="hidden" name="idUser" id="idUser" value="${requestScope.userId}">
+						
+						
 						<div class="form-group col-md-6">
 							<label>Nome <span class="text-danger"></span></label> 
 							<input type="text" name="nome" id="nome" class="form-control" value="${requestScope.userAttribute.nome}">
@@ -101,7 +103,7 @@
                       	       Attenzione! Devi inserire username!
                  	        </div>
 						</div>
-					<c:if test="${isCreato == true }">
+					<c:if test="${isCreato }">
 						<div class="form-group col-md-6">
 	                          <label>Stato</label>
 	                             <select id="listaStati" name="stato" class="custom-select browser-default" value="${userAttribute.stato}">	
@@ -125,9 +127,15 @@
 								    	${ruolo.codice}
 								    	<br>
 								   </c:forEach>
-				 
 					     </div>
 					 </c:if>
+					 <c:if test="${!isCreato}">
+					 	<input type="hidden" name="stato" id="listaStati" value="${userAttribute.stato}">
+					 	<c:forEach items="${userAttribute.ruoli}" var="ruoloUtente" >
+					 		<input type="hidden" class="form-check-input" id="ruolo" name="listaRuoli" value="${ruoloUtente}">
+						</c:forEach>
+					 </c:if>
+					 
 					</div>
 					<button type="submit" name="submit" value="submit" id="submit" class="btn btn-primary">Conferma</button>
 				</form>
