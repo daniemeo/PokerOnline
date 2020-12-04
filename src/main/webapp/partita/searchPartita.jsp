@@ -1,3 +1,4 @@
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -71,14 +72,18 @@
 			
 				
 					<div class="form-group col-md-6">
-						<label>Denominazione </label> <input class="form-control" type="text" id= "denominazione" name="denominazione" >
+						<label>Denominazione </label> 
+						<input class="form-control" type="text" id= "denominazione" name="denominazione" >
 					</div>
 					<div class="form-group col-md-6">
-						<label>Data Creazione</label> <input class="form-control" type="date" id= "data" name="data" >
+						<label>Data Creazione</label> 
+						<input class="form-control" type="date" id= "data" name="data" >
 					</div>
 					
 					<div class="form-group col-md-6">
-						<label>Puntata Minima</label> <input class="form-control" type="number" id= "cifraMin" name="cifra" >
+						<label>Puntata Minima</label> 
+						<input class="form-control" type="number" id= "cifraMin" name="cifra" min="0" max="9999" maxlength="4" 
+							oninput="this.value=this.value.slice(0,this.maxLength||1/1);this.value=(this.value < 1) ? (0) : this.value;" >
 					</div>
 					
 						<div class="form-group col-md-6">

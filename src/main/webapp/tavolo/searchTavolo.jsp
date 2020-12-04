@@ -70,10 +70,14 @@
 			<input class = "form-control" type = "hidden" name ="idUser" id = "idUtente" value = "${userAttribute.id}">
 				
 					<div class="form-group col-md-6">
-						<label>Esperienza Minima </label> <input class="form-control" type="number" id= "esperienzaMin"name="esperienza" >
+						<label>Esperienza Minima </label> 
+						<input class="form-control" type="number" id= "esperienzaMin"name="esperienza" min="0" max="9999" maxlength="4" 
+							oninput="this.value=this.value.slice(0,this.maxLength||1/1);this.value=(this.value < 1) ? (0) : this.value;">
 					</div>
 					<div class="form-group col-md-6">
-						<label>Puntata Minima</label> <input class="form-control" type="number" step = "0.50" id= "cifraMin" name="cifra" >
+						<label>Puntata Minima</label>
+						 <input class="form-control" type="number" step = "0.50" id= "cifraMin" name="cifra" min="0" max="9999" maxlength="4" 
+							oninput="this.value=this.value.slice(0,this.maxLength||1/1);this.value=(this.value < 1) ? (0) : this.value;">
 					</div>
 					<div class="form-group col-md-6">
 						<label>Denominanzione</label> <input class="form-control" type="text" id= "denom" name="denominazione" >

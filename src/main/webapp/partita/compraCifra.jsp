@@ -47,7 +47,8 @@
 			
 				<input class = "form-control" type = "hidden" name ="idUser" id = "idUser" value ="${requestScope.userAttribute.id}">
 					<div class="form-group col-md-6">
-						<label>Credito </label> <input class="form-control" type="number" id= "cifra"name="cifra" >
+						<label>Credito </label> <input class="form-control" type="number" id= "cifra"name="cifra" min="0" max="9999" maxlength="4" 
+							oninput="this.value=this.value.slice(0,this.maxLength||1/1);this.value=(this.value < 1) ? (0) : this.value;" >
 					</div>
 					
 

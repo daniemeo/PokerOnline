@@ -91,14 +91,16 @@
 						
 						<div class="form-group col-md-6">
 							<label>Esperienza Minima <span class="text-danger"></span></label>
-							<input type="number" name="esperienza" id="esperienza" class="form-control" value="${requestScope.tavoloAttribute.expMin}">
+							<input type="number" name="esperienza" id="esperienza" class="form-control" value="${requestScope.tavoloAttribute.expMin}"min="0" max="9999" maxlength="4" 
+							oninput="this.value=this.value.slice(0,this.maxLength||1/1);this.value=(this.value < 1) ? (0) : this.value;">
 							<div class="invalid-feedback" id= "errorEsperienza">
                              Attenzione! Devi inserire esperienza minima del tavolo!
                         </div>
 						</div>
 							<div class="form-group col-md-6">
 							<label>Cifra Minima <span class="text-danger"></span></label>
-							<input type="number" name="cifra" id="cifra" class="form-control" value="${requestScope.tavoloAttribute.cifraMin}">
+							<input type="number" name="cifra" id="cifra" class="form-control" value="${requestScope.tavoloAttribute.cifraMin}" min="0" max="9999" maxlength="4" 
+							oninput="this.value=this.value.slice(0,this.maxLength||1/1);this.value=(this.value < 1) ? (0) : this.value;">
 							<div class="invalid-feedback" id= "errorCifra">
                              Attenzione! Devi inserire cifra minima del tavolo!
                              </div>

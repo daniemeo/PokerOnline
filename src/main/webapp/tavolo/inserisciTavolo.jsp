@@ -105,14 +105,16 @@
 				
 					<div class="form-group col-md-6">
 						<label>Esperienza Minima </label> 
-						<input class="form-control" type="number" id= "esperienzaMin" name="esperienza" >
+						<input class="form-control" type="number" id= "esperienzaMin" name="esperienza" min="0" max="9999" maxlength="4" 
+							oninput="this.value=this.value.slice(0,this.maxLength||1/1);this.value=(this.value < 1) ? (0) : this.value;" >
 						<div class="invalid-feedback" id= "errorEsperienza">
                              Attenzione! Devi inserire esperienza minima del tavolo!
                         </div>
 					</div>
 					<div class="form-group col-md-6">
 						<label>Puntata Minima</label>
-						<input class="form-control" type="number" id= "cifraMin" name="cifra"  >
+						<input class="form-control" type="number" id= "cifraMin" name="cifra" min="0" max="9999" maxlength="4" 
+							oninput="this.value=this.value.slice(0,this.maxLength||1/1);this.value=(this.value < 1) ? (0) : this.value;" >
 						<div class="invalid-feedback" id= "errorCifra">
                              Attenzione! Devi inserire cifra minima del tavolo!
                         </div>
